@@ -72,7 +72,7 @@ TXN="$2"
 SVNLOOK=/home/daniel-soft/local/bin/svnlook
 #$SVNLOOK log -t "$TXN" "$REPOS" | \
 #    grep "[a-zA-Z0-9]" > /dev/null || exit 1
-if echo $COMMIT_LOG | grep "[a-zA-Z0-9]" > /dev/null
+if echo $COMMIT_LOG | grep "[^ ]" > /dev/null
 then
 else
 echo '------------------------------------------------------------------' 1>&2
