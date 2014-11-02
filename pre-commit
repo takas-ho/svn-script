@@ -70,18 +70,17 @@ TXN="$2"
 
 # Make sure that the log message contains some text.
 SVNLOOK=/home/daniel-soft/local/bin/svnlook
-$SVNLOOK log -t "$TXN" "$REPOS" | \
-    grep "[a-zA-Z0-9]" > /dev/null || exit 1
-#if echo $COMMIT_LOG | grep "[a-zA-Z0-9]" > /dev/null
-#then
-#else
-#echo '------------------------------------------------------------------' 1>&2
-#echo 'Warning!!' 1>&2
-#echo '------------------------------------------------------------------' 1>&2
-#echo 'Deny the null message.' 1>&2
-#echo '------------------------------------------------------------------' 1>&2
-#exit 1
-#fi
+if $SVNLOOK log -t "$TXN" "$REPOS" | \
+    grep "[a-zA-Z0-9]" > /dev/null
+then
+else
+echo '------------------------------------------------------------------' 1>&2
+echo 'Warning!!' 1>&2
+echo '------------------------------------------------------------------' 1>&2
+echo 'Deny the null message.' 1>&2
+echo '------------------------------------------------------------------' 1>&2
+exit 1
+fi
 
 # Check that the author of this commit has the rights to perform
 # the commit on the files and directories being modified.
